@@ -1,0 +1,56 @@
+% Math stuff
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+
+% Cancel slash \cancel
+\usepackage[makeroom]{cancel}
+
+% Margin
+\usepackage[margin=1in]{geometry}
+
+% TOC links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=black
+}
+
+% TOC depth
+\setcounter{tocdepth}{3}
+
+% Header customization
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Don't indent paragraphs, and leave some space
+\usepackage{parskip}
+
+% Theorem environments
+\usepackage{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+\theoremstyle{definition}
+\newmdtheoremenv[nobreak=true]{definition}{Definition}
+\newmdtheoremenv[nobreak=true]{theorem}{Theorem}
+\newtheorem{eg}{Example}
+\newtheorem{problem}{Problem}
+\newtheorem*{note}{Note}
+\newtheorem*{aside}{Aside}
+
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=\parskip \thm@postskip=0pt
+}
+
+% image stuff
+\usepackage[export]{adjustbox}
+
+% Custom commands
+\newcommand\dx{\,\mathrm{d}x}
+
+% My name
+\author{Zed Chance}
