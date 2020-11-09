@@ -30,16 +30,20 @@
 % Don't indent paragraphs, and leave some space
 \usepackage{parskip}
 
+% Start sections on new pages
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
 % Theorem environments
 \usepackage{mdframed}
 \mdfsetup{skipabove=1em,skipbelow=0em}
 \theoremstyle{definition}
 \newmdtheoremenv[nobreak=true]{definition}{Definition}
 \newmdtheoremenv[nobreak=true]{theorem}{Theorem}
-\newtheorem{eg}{Example}
+\newmdtheoremenv[hidealllines=true]{eg}{Example}
 \newtheorem{problem}{Problem}
-\newtheorem*{note}{Note}
-\newtheorem*{aside}{Aside}
+\newmdtheoremenv[innertopmargin=0em,topline=false,rightline=false,bottomline=false]{note}{Note}
+\newmdtheoremenv[innertopmargin=0em,topline=false,rightline=false,bottomline=false]{aside}{Aside}
 
 \makeatletter
 \def\thm@space@setup{%

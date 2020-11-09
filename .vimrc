@@ -8,9 +8,12 @@ set runtimepath^=~/.vim/plugins/autoclose.vim
 " Syntax highlighting
 syntax on
 colorscheme peachpuff
+hi MatchParen cterm=bold ctermbg=none ctermfg=blue
 
 " Spaces instead of tabs
 set softtabstop=4
+set shiftwidth=4
+set tabstop=4
 set expandtab
 
 " Automatically indent on a new line
@@ -19,8 +22,9 @@ set autoindent
 " Turn mouse on
 set mouse=a
 
-" Line numbers
+" Line numbers and wrap
 set number
+set nowrap
 
 " Disable override of colorscheme in MacVim
 let macvim_skip_colorscheme=1
@@ -56,7 +60,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'lervag/vimtex'
 let g:tex_flavor='latex'
-"let g:vimtex_view_method='zathura'
+let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 set conceallevel=0
 let g:tex_conceal='abdmg'
