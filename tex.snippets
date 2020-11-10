@@ -152,6 +152,12 @@ snippet == "equals" iA
 &= $1 \\\\
 endsnippet
 
+# Infinity symbol in math
+context "math()"
+snippet ooo "infty" iA
+\infty $0
+endsnippet
+
 # Text in math mode
 context "math()"
 snippet text "Text in math mode" iA
@@ -230,4 +236,25 @@ endsnippet
 # Parenthesis
 snippet LEFT "Left Right Parenthesis" wA
 \left( $1 \right) $0
+endsnippet
+
+# Quotes
+snippet `` "quotes" wA
+\`\`$1''$0
+endsnippet
+
+# leq geq and neq
+context "math()"
+snippet "<=" "less than or equal" riA
+\\leq $0
+endsnippet
+
+context "math()"
+snippet ">=" "greater than or equal" riA
+\\geq $0
+endsnippet
+
+context "math()"
+snippet "!=" "not equal" riA
+\\neq $0
 endsnippet
