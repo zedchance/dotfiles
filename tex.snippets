@@ -55,9 +55,8 @@ endsnippet
 
 snippet ALI "align*" bA
 \begin{align*}
-	$1
+	$0
 \end{align*}
-$0
 endsnippet
 
 snippet enum "Enumerate" bA
@@ -155,7 +154,7 @@ endsnippet
 # Infinity symbol in math
 context "math()"
 snippet ooo "infty" iA
-\infty $0
+\infty$0
 endsnippet
 
 # Text in math mode
@@ -258,3 +257,20 @@ context "math()"
 snippet "!=" "not equal" riA
 \\neq $0
 endsnippet
+
+# lim, int and sum
+context "math()"
+snippet lim "limit" wA
+\\lim_{$1 \to $2} $0
+endsnippet
+
+context "math()"
+snippet int "integral" wA
+\\int_{$1}^{$2} $3 \,\mathrm{d}$4 $0
+endsnippet
+
+context "math()"
+snippet sum "sum" wA
+\\sum_{i = $1}^{$2} $0
+endsnippet
+
