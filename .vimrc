@@ -7,8 +7,7 @@ set runtimepath^=~/.vim/plugins/autoclose.vim
 
 " Syntax highlighting
 syntax on
-colorscheme peachpuff
-hi MatchParen cterm=bold ctermbg=none ctermfg=blue
+set cursorline
 
 " Spaces instead of tabs
 set softtabstop=4
@@ -44,7 +43,7 @@ set backspace=2
 imap <A-BS> <C-w>
 
 " Keep lines below and above cursor
-set scrolloff=5
+set scrolloff=8
 
 " spell check
 setlocal spell
@@ -71,5 +70,10 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
+" Plug 'doums/darcula'
+
 call plug#end()
 
+" colorscheme
+colorscheme akintoij
+hi texItalStyle cterm=bold
