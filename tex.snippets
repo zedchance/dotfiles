@@ -20,11 +20,7 @@ endsnippet
 
 # GLOBAL CONTEXT
 global !p
-texMathZones = ['texMathZone' + x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS',
-'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS',
-'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z', 'AmsA', 'AmsB', 'AmsC',
-'AmsD', 'AmsE', 'AmsF', 'AmsG', 'AmsAS', 'AmsBS', 'AmsCS', 'AmsDS', 'AmsES',
-'AmsFS', 'AmsGS' ]]
+texMathZones = ['texMathZone' + x for x in ['', 'X', 'XX', 'Env', 'EnvStarred', 'Ensured']]
 
 texIgnoreMathZones = ['texMathText']
 
@@ -34,17 +30,8 @@ texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')
 ignore = texIgnoreMathZoneIds[0]
 
 def math():
-	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
-	try:
-		first = next(
-            i for i in reversed(synstackids)
-            if i in texIgnoreMathZoneIds or i in texMathZoneIds
-        )
-		return first != ignore
-	except StopIteration:
-		return False
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
 endglobal
-
 
 # Environments
 snippet beg "begin{} / end{}" bA
@@ -78,6 +65,11 @@ endsnippet
 
 snippet ital "textit"
 \\textit{$1}$0
+endsnippet
+
+# Italic "see"
+snippet SEE "italic see"
+\\textit{See $1} $0
 endsnippet
 
 # Inline math
@@ -284,4 +276,26 @@ endsnippet
 # snippet sigma "sigma" wA
 # \\sigma $0
 # endsnippet
+
+# mathbb letters
+context "math()"
+snippet "RR" "real numbers" riA
+\\mathbb{R}$0
+endsnippet
+
+context "math()"
+snippet "NN" "natural numbers" riA
+\\mathbb{N} $0
+endsnippet
+
+context "math()"
+snippet "ZZ" "integers" riA
+\\mathbb{Z} $0
+endsnippet
+
+# vectors / matrices
+context "math()"
+snippet "MAT" "bmatrix" riA
+\\begin{bmatrix} $1 \\end{bmatrix} $0
+endsnippet
 
