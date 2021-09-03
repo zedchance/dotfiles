@@ -1,0 +1,335 @@
+# GLOBAL CONTEXT
+global !p
+
+def math():
+	return False
+
+def katex():
+	return bool(re.match('{{<k> }}.*{{</k>}}', snip.buffer[snip.line]))
+
+endglobal
+
+# Hugo shortcodes
+snippet COL "columns" bA
+{{< columns >}}
+$1
+<--->
+$0
+{{< /columns >}}
+endsnippet
+
+snippet EG "example" bA
+{{< details title="Example $1" open=true >}}
+$0
+{{< /details >}}
+endsnippet
+
+snippet MNOTE "math note" bA
+<blockquote class="book-hint info">
+Note: $0
+</blockquote>
+endsnippet
+
+snippet NOTE "note" bA
+{{< hint info >}}
+Note:
+{{< /hint >}}
+endsnippet
+
+snippet DEFI "definition" bA
+{{< hint warning >}}
+Definition:
+{{< /hint >}}
+endsnippet
+
+snippet FILE "file" bA
+{{< hint info >}}
+File: [*$1*](/notes/$1) $0
+{{< /hint >}}
+endsnippet
+
+snippet INFO "info" bA
+{{< hint info >}}
+$0
+{{< /hint >}}
+endsnippet
+
+snippet WARN "warning" bA
+{{< hint warning >}}
+$0
+{{< /hint >}}
+endsnippet
+
+snippet DANG "danger" bA
+{{< hint danger >}}
+$0
+{{< /hint >}}
+endsnippet
+
+snippet MER "mermaid block" bA
+{{< mermaid class="text-center" >}}
+$0
+{{< /mermaid >}}
+endsnippet
+
+# Inline math
+snippet mk "katex" wA
+{{<k>}} $1 {{</k>}}$0
+endsnippet
+
+# Display katex
+snippet ALI "align*" bA
+{{<k display>}}
+\\begin{aligned}
+	$0
+\\end{aligned}
+{{</k>}}
+endsnippet
+
+snippet CITE "citation" bA
+<cite>$1[^$2]</cite>
+
+[^$2]: $0
+endsnippet
+
+snippet MARK "highlight" bA
+<mark>$1</mark> $0
+endsnippet
+
+# Markdown code blocks
+snippet CODE "code block" bA
+\`\`\`
+$0
+\`\`\`
+endsnippet
+
+snippet RKT "rkt block" bA
+\`\`\`rkt
+$0
+\`\`\`
+endsnippet
+
+snippet JAVA "java block" bA
+\`\`\`java
+$0
+\`\`\`
+endsnippet
+
+# markdown link
+snippet LINK "markdown link" wA
+[$1]($2) $0
+endsnippet
+
+# Read more
+snippet READ "read more link" bA
+[*Read more*]($0)
+endsnippet
+
+# Math
+
+# Sub and super scripts
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet sr "^2" iA
+^2
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet cb "^3" iA
+^3
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet compl "complement" iA
+^{c}
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet ^^ "superscript" iA
+^{$1}$0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet '([A-Za-z])(\d)' "auto subscript" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet __ "subscript with brackets" iA
+_{$1}$0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+# ldots
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet ... "ldots" iA
+\\ldots$0
+endsnippet
+
+# sqrt
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet root "square root" iA
+\\sqrt{$1}$0
+endsnippet
+
+# Aligned equals with newline at end
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet == "equals" iA
+&= $1 \\\\
+endsnippet
+
+# Infinity symbol in math
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet ooo "infty" iA
+\infty$0
+endsnippet
+
+# Text in math mode
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet text "Text in math mode" iA
+\\text{$1} $0
+endsnippet
+
+# Fractions
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+priority 1000
+snippet '^.*\)/' "() Fraction" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+	if stripped[i] == ')': depth += 1
+	if stripped[i] == '(': depth -= 1
+	if depth == 0: break;
+	i -= 1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet / "Fraction" i
+\\frac{${VISUAL}}{$1}$0
+endsnippet
+
+# bars, hats, and tildes
+priority 10
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "bar" "bar" riA
+\bar{$1}$0
+endsnippet
+
+priority 100
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "([a-zA-Z])bar" "bar" riA
+\bar{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 10
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "hat" "hat" riA
+\hat{$1}$0
+endsnippet
+
+priority 100
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "([a-zA-Z])hat" "hat" riA
+\hat{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 10
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "tilde" "tilde" riA
+\tilde{$1}$0
+endsnippet
+
+priority 100
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "([a-zA-Z])tilde" "tilde" riA
+\tilde{`!p snip.rv=match.group(1)`}
+endsnippet
+
+# Parenthesis
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet LEFT "Left Right Parenthesis" wA
+\left( $1 \right) $0
+endsnippet
+
+# leq geq and neq
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "<=" "less than or equal" riA
+\\leq $0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet ">=" "greater than or equal" riA
+\\geq $0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "!=" "not equal" riA
+\\neq $0
+endsnippet
+
+# lim, int and sum
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet lim "limit" A
+\\lim_{$1 \to $2} $0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet int "integral" wA
+\\int_{$1}^{$2} $3 \,\mathrm{d}$4 $0
+endsnippet
+
+# context "math()"
+# snippet sum "sum"
+# \\sum_{i = $1}^{$2} $0
+# endsnippet
+ 
+# mu and sigma
+# context "math()"
+# snippet mu "mu" wA
+# \\mu $0
+# endsnippet
+# 
+# context "math()"
+# snippet sigma "sigma" wA
+# \\sigma $0
+# endsnippet
+
+# mathbb letters
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "RR" "real numbers" riA
+\\mathbb{R} $0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "NN" "natural numbers" riA
+\\mathbb{N} $0
+endsnippet
+
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "ZZ" "integers" riA
+\\mathbb{Z} $0
+endsnippet
+
+# vectors / matrices
+context "re.match('.*{{<k>}}.*{{</k>}}.*', snip.buffer[snip.line])"
+snippet "MAT" "bmatrix" riA
+\\begin{bmatrix} $1 \\end{bmatrix} $0
+endsnippet
+
