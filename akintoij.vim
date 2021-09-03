@@ -57,7 +57,7 @@ hi Debug          guisp=NONE guifg=#ffffff guibg=NONE    ctermfg=231 ctermbg=NON
 
 " misc
 
-hi ColorColumn      guisp=NONE guifg=#aeb5bd guibg=#2b2b2b ctermfg=249  ctermbg=236  gui=NONE           cterm=NONE
+hi ColorColumn      guisp=NONE guifg=#a4a3a3 guibg=#313335 ctermfg=248  ctermbg=236  gui=NONE           cterm=NONE
 hi Conceal          guisp=NONE guifg=#597cc2 guibg=NONE    ctermfg=67   ctermbg=NONE gui=NONE           cterm=NONE
 hi Cursor           guisp=NONE guifg=#ffffff guibg=#1c1c1c ctermfg=231  ctermbg=234  gui=NONE           cterm=NONE
 hi lCursor          guisp=NONE guifg=#ffffff guibg=#1c1c1c ctermfg=231  ctermbg=234  gui=NONE           cterm=NONE
@@ -97,7 +97,7 @@ hi SpellCap         guisp=NONE guifg=#bd693c guibg=NONE    ctermfg=131  ctermbg=
 hi SpellLocal       guisp=NONE guifg=#bd693c guibg=NONE    ctermfg=131  ctermbg=NONE gui=NONE           cterm=NONE
 hi SpellRare        guisp=NONE guifg=#bd693c guibg=NONE    ctermfg=131  ctermbg=NONE gui=NONE           cterm=NONE
 hi StatusLine       guisp=NONE guifg=#a4a3a3 guibg=#313335 ctermfg=248  ctermbg=236  gui=NONE           cterm=NONE
-hi StatusLineNC     guisp=NONE guifg=NONE    guibg=#292929 ctermfg=248  ctermbg=235  gui=NONE           cterm=NONE
+hi StatusLineNC     guisp=NONE guifg=NONE    guibg=#292929 ctermfg=NONE ctermbg=235  gui=NONE           cterm=NONE
 hi StatusLineTerm   guisp=NONE guifg=#a4a3a3 guibg=#313335 ctermfg=248  ctermbg=236  gui=NONE           cterm=NONE
 hi StatusLineTermNC guisp=NONE guifg=#a4a3a3 guibg=#313335 ctermfg=248  ctermbg=236  gui=NONE           cterm=NONE
 hi TabLine          guisp=NONE guifg=#ffffff guibg=#1c1c1c ctermfg=231  ctermbg=234  gui=NONE           cterm=NONE
