@@ -67,6 +67,12 @@ hi clear SpellRare
 hi SpellBad cterm=underline
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
+" syntax highlighting in markdown files
+let g:markdown_fenced_languages = ['c', 'java', 'sql']
+
+" split chars
+set fillchars+=vert:\ 
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 
