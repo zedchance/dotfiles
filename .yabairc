@@ -1,0 +1,18 @@
+# bsp mode
+yabai -m config layout bsp
+
+# mouse focus
+yabai -m config focus_follows_mouse autoraise
+yabai -m config mouse_follows_focus on
+
+# padding
+yabai -m config top_padding 10
+yabai -m config bottom_padding 10
+yabai -m config left_padding 10
+yabai -m config right_padding 10
+yabai -m config window_gap 10
+
+# float sys prefs
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Installer$" manage=off
+
