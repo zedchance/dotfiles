@@ -58,9 +58,21 @@ snippet item "Itemize" bA
 \end{itemize}
 endsnippet
 
+snippet TAB "Tabular" bA
+\begin{center}
+	\begin{tabular}{$1}
+		$0
+	\end{tabular}
+\end{center}
+endsnippet
+
 # Bold and italics
 snippet bold "textbf"
 \\textbf{$1}$0
+endsnippet
+
+snippet tt "inline code" wA
+\\texttt{$1}$0
 endsnippet
 
 snippet ital "textit"
