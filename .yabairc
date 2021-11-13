@@ -3,16 +3,20 @@ yabai -m config layout bsp
 
 # mouse focus
 yabai -m config focus_follows_mouse autoraise
-yabai -m config mouse_follows_focus on
+yabai -m config mouse_follows_focus off
 
 # padding
-yabai -m config top_padding 10
-yabai -m config bottom_padding 10
-yabai -m config left_padding 10
-yabai -m config right_padding 10
-yabai -m config window_gap 10
+yabai -m config top_padding 8
+yabai -m config bottom_padding 8
+yabai -m config left_padding 8
+yabai -m config right_padding 8
+yabai -m config window_gap 8
 
-# float sys prefs
-yabai -m rule --add app="^System Preferences$" manage=off
+# specific app prefs
+yabai -m rule --add app="^System Preferences$" manage=off layer=above
+yabai -m rule --add app="^choose$" manage=off layer=above
 yabai -m rule --add app="^Installer$" manage=off
+yabai -m rule --add app="^Inkscape$" manage=off layer=above grid=11:11:2:0:7:8
+yabai -m rule --add app="^Messages$" manage=off layer=above grid=15:15:9:2:6:10
+yabai -m rule --add app="^Wyze$" manage=off sticky=on
 

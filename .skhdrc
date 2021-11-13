@@ -1,24 +1,26 @@
 # layouts
 ctrl + alt + cmd - s : yabai -m space --layout stack && \
-                       yabai -m config focus_follows_mouse off && \
-                       yabai -m config mouse_follows_focus off
+                       osascript -e 'display notification "Stack" with title "Window mode"'
 ctrl + alt + cmd - t : yabai -m space --layout bsp && \
-                       yabai -m config focus_follows_mouse autoraise && \
-                       yabai -m config mouse_follows_focus on
+                       osascript -e 'display notification "Tile" with title "Window mode"'
 ctrl + alt + cmd - f : yabai -m space --layout float && \
-                       yabai -m config focus_follows_mouse off && \
-                       yabai -m config mouse_follows_focus off
+                       osascript -e 'display notification "Float" with title "Window mode"'
 
-# mouse auto focus off
-ctrl + alt + cmd - m : yabai -m config focus_follows_mouse off && \
-                       yabai -m config mouse_follows_focus off
+# mouse auto raise
+ctrl + alt + cmd - m : yabai -m config focus_follows_mouse autoraise && \
+                       osascript -e 'display notification "auto raise on" with title "mouse"'
+ctrl + alt + cmd - n : yabai -m config focus_follows_mouse off && \
+                       osascript -e 'display notification "auto raise off" with title "mouse"'
 
 # focus window
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
-alt - n : yabai -m window --focus next || yabai -m window --focus first
+
+# cycle thru stack
+alt - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+alt - b : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 
 # warp managed window
 shift + alt - h : yabai -m window --warp west
@@ -31,6 +33,7 @@ shift + alt - n : yabai -m window --warp next || yabai -m window --warp first
 shift + alt - 1 : yabai -m window --space 1
 shift + alt - 2 : yabai -m window --space 2
 shift + alt - 3 : yabai -m window --space 3
+shift + alt - 4 : yabai -m window --space 4
 
 # balance space
 ctrl + alt + cmd - b : yabai -m space --balance
@@ -47,10 +50,13 @@ ctrl + alt + cmd - h : yabai -m window --display recent && yabai -m display --fo
 # toggle window zoom
 ctrl + alt + cmd - space : yabai -m window --toggle zoom-fullscreen
 
+# toggle native full screen
+ctrl + alt + cmd + shift - space : yabai -m window --toggle native-fullscreen
+
 # toggle window split type
 alt - i : yabai -m window --toggle split
 
 # float / unfloat window and center on screen
 alt - t : yabai -m window --toggle float;\
-          yabai -m window --grid 11:11:2:1:7:8
+          yabai -m window --grid 11:11:2:0:7:8
 
