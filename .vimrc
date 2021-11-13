@@ -9,6 +9,9 @@ set runtimepath^=~/.vim/plugins/autoclose.vim
 syntax on
 set cursorline
 
+" ruler
+set ruler
+
 " Autocomplete wordlists
 set dictionary+=~/.vim/words/tex.dict
 
@@ -77,16 +80,13 @@ set fillchars+=vert:\
 call plug#begin('~/.vim/plugged')
 
 Plug 'lervag/vimtex'
-let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
-let g:vimtex_view_forward_search_on_start=0
-let g:vimtex_quickfix_mode=0
+
 " Conceal on .tex files
 if &filetype ==# 'tex'
     set conceallevel=2
     let g:tex_conceal='abdmg'
 endif
-"let g:vimtex_indent_enabled = 0
 
 Plug 'sirver/ultisnips'
 let g:UltiSnipsExpandTrigger = '<tab>'
@@ -95,7 +95,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 " Paste images into markdown files
 Plug 'zedchance/md-img-paste.vim'
-autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>:w<CR>
 let g:mdip_imgdir_absolute = '/Users/zedchance/Dropbox/Files/Code/Sites/notes/static'
 let g:mdip_imgdir_intext = '/notes'
 
@@ -115,8 +115,27 @@ let g:ycm_key_list_previous_completion = []
 " git diff in gutter
 Plug 'airblade/vim-gitgutter'
 
+" auto aligner
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" remap :E to :Explore, because the above plugin has ambiguous command :EasyAlign
+command! E Explore
+let g:easy_align_delimiters = {
+\ '/': {
+\     'pattern':         '//\+\|/\*\|\*/',
+\     'delimiter_align': 'l',
+\     'ignore_groups':   ['!Comment'] },
+\ }
+
 call plug#end()
+
+" inkscape-figures, CTRL + F
+inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
+nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
 
 " colorscheme
 colorscheme akintoij
-hi texItalStyle cterm=bold
+
