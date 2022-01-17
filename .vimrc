@@ -76,6 +76,9 @@ let g:markdown_fenced_languages = ['c', 'java', 'sql']
 " split chars
 set fillchars+=vert:\ 
 
+" open file to last place
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 
