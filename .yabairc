@@ -1,10 +1,6 @@
 # bsp mode
 yabai -m config layout bsp
 
-# mouse focus
-yabai -m config focus_follows_mouse autoraise
-yabai -m config mouse_follows_focus off
-
 # padding
 yabai -m config top_padding 8
 yabai -m config bottom_padding 8
